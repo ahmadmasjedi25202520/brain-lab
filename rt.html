@@ -62,9 +62,7 @@ stimulus_width:700,
     type: jsPsychHtmlKeyboardResponse,
     stimulus: '<div style="font-size:60px;">+</div>',
     choices: "NO_KEYS",
-    trial_duration: function(){
-      return jsPsych.randomization.sampleWithoutReplacement([250, 500, 750, 1000, 1250, 1500, 1750, 2000], 1)[0];
-    },
+    trial_duration: 1000,
     data: {
       task: 'fixation'
     }
@@ -74,9 +72,9 @@ stimulus_width:700,
     type: jsPsychImageKeyboardResponse,
     stimulus: jsPsych.timelineVariable('stimulus'),
     choices: ['f', 'j'],
-    stimulus_duration:500,
-    trial_duration:1500,
-    response_ends_trial:true,
+    stimulus_duration: 500,
+    trial_duration: 1500,
+    response_ends_trial: true,
     data: {
       task: 'response',
       correct_response: jsPsych.timelineVariable('correct_response')
