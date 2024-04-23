@@ -36,24 +36,19 @@ message :'در حال دانلود محرک ها (حجم 3 مگابایت)'  };
 
 
   var welcome = {
-    type: jsPsychHtmlKeyboardResponse,
-    stimulus:`<div style='float: center;'>
- <img src='https://raw.githubusercontent.com/ahmadmasjedi25202520/brain/main/Rtt/welcom.JPG'></img></div></div>`
-     
-    ,
+    type: jsPsychImageKeyboardResponse,
+    stimulus:"https://raw.githubusercontent.com/ahmadmasjedi25202520/brain/main/Rtt/welcom.JPG",
+   
+     stimulus_height:500,
+stimulus_width:700,
  choices: ['f', 'j'],
-  
   };
-
-
-
-
   var instructions = {
-    type: jsPsychHtmlKeyboardResponse,
-    stimulus: `<div style='float: center;'>
- <img src='https://raw.githubusercontent.com/ahmadmasjedi25202520/brain/main/Rtt/strucer.JPG'></img></div></div>`
-     ,
+    type: jsPsychImageKeyboardResponse,
+    stimulus: "https://raw.githubusercontent.com/ahmadmasjedi25202520/brain/main/Rtt/strucer.JPG",
 choices: ['f', 'j'],
+         stimulus_height:500,
+stimulus_width:700,
     post_trial_gap: 500
   };
 
@@ -79,6 +74,9 @@ choices: ['f', 'j'],
     type: jsPsychImageKeyboardResponse,
     stimulus: jsPsych.timelineVariable('stimulus'),
     choices: ['f', 'j'],
+    stimulus_duration:500
+      trial_duration : 1500
+    response_ends_trial : true
     data: {
       task: 'response',
       correct_response: jsPsych.timelineVariable('correct_response')
