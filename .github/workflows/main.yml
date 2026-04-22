@@ -1,0 +1,17 @@
+name: "Fetch Website Content"
+on:
+  workflow_dispatch:  # این خط باعث می‌شود بتوانید آن را به صورت دستی اجرا کنید
+
+jobs:
+  fetch-content:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get the website content with curl
+        run: |
+          curl https://www.google.com > page_content.html
+          echo "محتوای سایت در فایل page_content.html ذخیره شد."
+      - name: Upload content as an artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: website-content
+          path: page_content.html
