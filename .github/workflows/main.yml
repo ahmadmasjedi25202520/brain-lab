@@ -1,18 +1,19 @@
-name: my-python-tests   # نام workflow
+name: Run Python Hello World
 
-on: [push]   # این workflow با هر بار push کد به مخزن اجرا می‌شود
+on:
+  workflow_dispatch:    # این خط به شما اجازه می‌دهد کار را به صورت دستی اجرا کنید [citation:4][citation:8]
 
 jobs:
-  build:
-    runs-on: ubuntu-latest   # استفاده از سیستم‌عامل ubuntu برای اجرا
+  run-python-script:
+    runs-on: ubuntu-latest   # محیط اجرایی (یک سرور لینوکسی موقت)
     steps:
-    - name: 1. دریافت کدها
-      uses: actions/checkout@v4
-    - name: 2. راه‌اندازی Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: '3.11'   # نسخه مورد نظر پایتون
-    - name: 3. نصب پیش‌نیازها
-      run: pip install -r requirements.txt   # نصب کتابخانه‌های مورد نیاز از فایل requirements.txt
-    - name: 4. اجرای تست‌ها
-      run: python test.py   # اجرای فایل تست
+      - name: Checkout code
+        uses: actions/checkout@v4   # 1. کدهای مخزن شما را می‌آورد
+
+      - name: Setup Python
+        uses: actions/setup-python@v5   # 2. پایتون را نصب می‌کند [citation:2][citation:5][citation:9]
+        with:
+          python-version: '3.12'
+
+      - name: Run Python script
+        run: python hello.py   # 3. فایل پایتون شما را اجرا می‌کند [citation:6][citation:9]
