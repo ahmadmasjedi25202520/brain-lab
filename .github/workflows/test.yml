@@ -1,0 +1,21 @@
+name: Run Tests
+
+on: [push, pull_request]  # در این رویدادها اجرا شود
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: دریافت کدها از مخزن
+        uses: actions/checkout@v4
+
+      - name: نصب پایتون
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: نصب کتابخانه‌های مورد نیاز
+        run: pip install -r requirements.txt
+
+      - name: اجرای تست‌ها
+        run: python tests/test.py   # مسیر درست به فایل test.py
