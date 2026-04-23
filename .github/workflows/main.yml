@@ -1,17 +1,18 @@
-name: "Fetch Website Content"
-on:
-  workflow_dispatch:  # این خط باعث می‌شود بتوانید آن را به صورت دستی اجرا کنید
+name: my-python-tests   # نام workflow
+
+on: [push]   # این workflow با هر بار push کد به مخزن اجرا می‌شود
 
 jobs:
-  fetch-content:
-    runs-on: ubuntu-latest
+  build:
+    runs-on: ubuntu-latest   # استفاده از سیستم‌عامل ubuntu برای اجرا
     steps:
-      - name: Get the website content with curl
-        run: |
-          curl https://www.google.com > page_content.html
-          echo "محتوای سایت در فایل page_content.html ذخیره شد."
-      - name: Upload content as an artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: website-content
-          path: page_content.html
+    - name: 1. دریافت کدها
+      uses: actions/checkout@v4
+    - name: 2. راه‌اندازی Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'   # نسخه مورد نظر پایتون
+    - name: 3. نصب پیش‌نیازها
+      run: pip install -r requirements.txt   # نصب کتابخانه‌های مورد نیاز از فایل requirements.txt
+    - name: 4. اجرای تست‌ها
+      run: python test.py   # اجرای فایل تست
